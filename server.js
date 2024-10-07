@@ -37,7 +37,7 @@ app.post('/updateCuti', (req, res) => {
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root', // Ganti dengan user MySQL-mu
-  password: '', // Ganti dengan password MySQL-mu
+  password: 'Setyaningrum18', // Ganti dengan password MySQL-mu
   database: 'db_cuti'
 });
 
