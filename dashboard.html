@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Pegawai</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Dashboard Pegawai</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="admin.html">Pengajuan Cuti</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Pengajuan Cuti Saya</h2>
+        <form id="pengajuan-form">
+            <label for="tanggal-mulai">Tanggal Mulai:</label>
+            <input type="date" id="tanggal-mulai" required>
+            <label for="tanggal-selesai">Tanggal Selesai:</label>
+            <input type="date" id="tanggal-selesai" required>
+            <label for="alasan">Alasan:</label>
+            <textarea id="alasan" required></textarea>
+            <button type="submit">Ajukan Cuti</button>
+        </form>
+
+        <h2>Riwayat Pengajuan Cuti</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tanggal Mulai</th>
+                    <th>Tanggal Selesai</th>
+                    <th>Alasan</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="riwayat-cuti">
+                <!-- Riwayat pengajuan cuti akan dimasukkan di sini -->
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        document.getElementById('pengajuan-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const tanggalMulai = document.getElementById('tanggal-mulai').value;
+            const tanggalSelesai = document.getElementById('tanggal-selesai').value;
+            const alasan = document.getElementById('alasan').value;
+
+            // Kirim data pengajuan ke server
+            alert(`Cuti diajukan dari ${tanggalMulai} sampai ${tanggalSelesai} dengan alasan: "${alasan}"`);
+            // Di sini tambahkan kode untuk mengirim data ke server menggunakan fetch atau axios
+
+            // Reset form
+            this.reset();
+        });
+
+        // Contoh data riwayat pengajuan cuti
+        const riwayatCuti = [
+            {
+                tanggal_mulai: "2024-10-01",
+                tanggal_selesai: "2024-10-03",
+                alasan: "Sakit",
+                status: "Disetujui"
+            },
+            {
+                tanggal_mulai: "2024-09-20",
+                tanggal_selesai: "2024-09-22",
+                alasan: "Keluarga",
+                status: "Ditolak"
+            }
+        ];
+
+        const riwayatCutiList = document.getElementById('riwayat-cuti');
+
+        riwayatCuti.forEach(cuti => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${cuti.tanggal_mulai}</td>
+                <td>${cuti.tanggal_selesai}</td>
+                <td>${cuti.alasan}</td>
+                <td>${cuti.status}</td>
+            `;
+            riwayatCutiList.appendChild(row);
+        });
+    </script>
+</body>
+</html>

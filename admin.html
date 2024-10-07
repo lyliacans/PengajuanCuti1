@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Pengajuan Cuti</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Dashboard Admin</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="admin.html">Pengajuan Cuti</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Pengajuan Cuti</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Pegawai</th>
+                    <th>Tanggal Mulai</th>
+                    <th>Tanggal Selesai</th>
+                    <th>Alasan</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="cuti-list">
+                <!-- Data pengajuan cuti akan dimasukkan di sini melalui JavaScript -->
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        // Contoh data pengajuan cuti (seharusnya diambil dari database)
+        const pengajuanCuti = [
+            {
+                nama: "John Doe",
+                tanggal_mulai: "2024-10-07",
+                tanggal_selesai: "2024-10-10",
+                alasan: "Liburan",
+                status: "Menunggu"
+            },
+            {
+                nama: "Jane Smith",
+                tanggal_mulai: "2024-10-15",
+                tanggal_selesai: "2024-10-20",
+                alasan: "Keluarga",
+                status: "Disetujui"
+            }
+        ];
+
+        const cutiList = document.getElementById('cuti-list');
+
+        pengajuanCuti.forEach(cuti => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${cuti.nama}</td>
+                <td>${cuti.tanggal_mulai}</td>
+                <td>${cuti.tanggal_selesai}</td>
+                <td>${cuti.alasan}</td>
+                <td>${cuti.status}</td>
+                <td>
+                    <button onclick="setujuiCuti('${cuti.nama}')">Setujui</button>
+                    <button onclick="tolakCuti('${cuti.nama}')">Tolak</button>
+                </td>
+            `;
+            cutiList.appendChild(row);
+        });
+
+        function setujuiCuti(nama) {
+            alert(`Pengajuan cuti oleh ${nama} disetujui!`);
+            // Di sini tambahkan kode untuk mengupdate status di database
+        }
+
+        function tolakCuti(nama) {
+            alert(`Pengajuan cuti oleh ${nama} ditolak!`);
+            // Di sini tambahkan kode untuk mengupdate status di database
+        }
+    </script>
+</body>
+</html>
